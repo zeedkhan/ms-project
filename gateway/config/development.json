@@ -1,0 +1,6 @@
+{
+    "userService": "http://localhost:8002",
+    "uploadService": "http://localhost:8003",
+    "blogService": "http://localhost:8002",
+    "port": 8000
+}

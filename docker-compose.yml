@@ -1,0 +1,66 @@
+version: '3'
+
+services:
+  postgres:
+    image: postgres:latest
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: 153246
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+
+  gateway:
+    container_name: micro_gateway
+    build:
+      context: ./gateway
+      dockerfile: Dockerfile
+      args:
+        - TAG=1.0.0
+    ports:
+      - "8000:8000"
+
+  user:
+    container_name: micro_user
+    build:
+      context: ./user
+      dockerfile: Dockerfile
+      args:
+        - TAG=1.0.0
+    ports:
+      - "8002:8002"
+    depends_on:
+      - postgres
+    env_file:
+      - ./user/.env
+
+  upload:
+    container_name: micro_upload
+    build:
+      context: ./upload
+      dockerfile: Dockerfile
+      args:
+        - TAG=1.0.0
+    ports:
+      - "8003:8003"
+    depends_on:
+      - postgres
+      - frontend
+      - user
+      - gateway
+
+  frontend:
+    container_name: micro_frontend
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+      args:
+        - TAG=1.0.0
+    ports:
+      - "3000:3000"
+    env_file:
+      - ./frontend/.env
+
+volumes:
+  pgdata:
