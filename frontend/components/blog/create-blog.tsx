@@ -1,6 +1,4 @@
-import { ContentLayout } from "@/app/(protected)/_components/layout/content-layout"
-import CreateNewBlog from "../editor/new-editor"
-import { OutputData } from "@editorjs/editorjs"
+import EditorWrapper from "../editor/wrapper-editor"
 import { Blog } from "@/types"
 
 type CreateBlogProps = {
@@ -10,9 +8,7 @@ type CreateBlogProps = {
 
 const CreateBlog: React.FC<CreateBlogProps> = ({ blog, blogId }) => {
     return (
-        <ContentLayout title="New doc" >
-            <CreateNewBlog blog={blog} blogId={blogId} />
-        </ContentLayout>
+        <EditorWrapper blog={blog} blogId={blogId} />
     )
 }
 

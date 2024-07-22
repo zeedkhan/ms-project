@@ -1,12 +1,24 @@
 import { BLOG_ROUTES } from "@/routes"
-import { blogSchema } from "@/schemas"
 import { Blog } from "@/types"
 import axios from "axios"
-import { z } from "zod"
 
 type Response = {
     success?: string;
     error?: string
+}
+
+const duplicatedSeoPath = async (seoPath: string): Promise<boolean> => {
+    try {
+        const request = await axios.get(`${BLOG_ROUTES.seoPathCheck}/${seoPath}`);
+        if (request.data) {
+            return true;
+        }
+    } catch (err) {
+        console.error(err);
+        return false;
+    }
+    
+    return false;
 }
 
 const getBlogById = async (id: string): Promise<Blog | null> => {
@@ -105,5 +117,6 @@ export {
     getUserBlogs,
     createBlog,
     updateBlog,
-    deleteBlog
+    deleteBlog,
+    duplicatedSeoPath
 }

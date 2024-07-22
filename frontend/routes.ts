@@ -57,4 +57,5 @@ export const UPLOAD_ROUTES = {
 
 export const BLOG_ROUTES = {
   blog: process.env.NEXT_PUBLIC_GATEWAY + "/blog",
+  seoPathCheck: process.env.NEXT_PUBLIC_GATEWAY + "/blog/seo-path"
 }

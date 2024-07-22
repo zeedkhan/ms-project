@@ -1,7 +1,7 @@
 import { Card } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
 import { Blog } from "@/types";
-import { FilePlus, FilePlus2, StickyNote } from "lucide-react";
+import { FilePlus2, StickyNote } from "lucide-react";
 import Link from "next/link";
 
 function Landing({ blogs }: { blogs: Blog[] }) {

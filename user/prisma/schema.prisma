@@ -50,6 +50,10 @@ model Blog {
   userId String
   user   User   @relation(fields: [userId], references: [id])
 
+  pageViews Int @default(0)
+
+  seoPath String @default("")
+
   version  Int           @default(1)
   versions BlogVersion[]
 

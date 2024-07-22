@@ -18,6 +18,7 @@ export type Blog = {
     description: string;
     userId: string;
     version?: number;
+    seoPath: string;
 }
 
 export enum UserRole {

@@ -7,6 +7,7 @@ import { OutputData } from "@editorjs/editorjs";
 import edjsParser from "editorjs-parser"
 import Markdown from "@/components/editor/markdown";
 
+
 function detectLanguage(codeString: string | null) {
     if (!codeString) return false;
     const languages = {
@@ -24,7 +25,6 @@ function detectLanguage(codeString: string | null) {
 
     return false;
 }
-
 
 const traverseDom = (DOM: Document) => {
     const body = DOM.body;
@@ -46,7 +46,7 @@ const traverseDom = (DOM: Document) => {
 
 type BlogIdProps = {
     content: OutputData;
-}
+};
 
 const BlogId: React.FC<BlogIdProps> = ({ content }) => {
     const customParsers = {
@@ -60,13 +60,10 @@ const BlogId: React.FC<BlogIdProps> = ({ content }) => {
 
     const par = new DOMParser();
     const DOM = par.parseFromString(markup, "text/html");
-
     const extractedDoms = traverseDom(DOM);
-
-    // document.title content
-
+    
     return (
-        <div className="space-y-2 flex flex-col items-center justify-center pt-16">
+        <div className="space-y-2 flex flex-col items-center justify-center pt-16 px-4">
             {extractedDoms.map((dom, index) => (
                 <div key={index}>
                     <Markdown content={dom || ""} />

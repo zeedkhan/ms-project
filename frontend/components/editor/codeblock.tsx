@@ -91,7 +91,7 @@ const CodeBlock: FC<Props> = memo(({ language, value, ...props }) => {
     }
 
     return (
-        <div className="w-full font-sans text-sm">
+        <div className="font-sans text-sm">
             <div className="flex w-full items-center justify-between  text-zinc-100">
                 <span className="text-xs lowercase">{language}</span>
                 <div className="flex items-center space-x-1">
@@ -116,7 +116,6 @@ const CodeBlock: FC<Props> = memo(({ language, value, ...props }) => {
                 style={vscDarkPlus}
                 PreTag="div"
                 customStyle={{
-                    width: "100%",
                     background: "black",
                     padding: "1.5rem 1rem",
                     borderRadius: "0.5rem",

@@ -1,7 +1,7 @@
 import { auth } from "@/auth";
-import ContentWrapper from "../../_components/content-wrapper";
 import Content from "./content";
 import { getUser } from "@/db/user";
+import ContentWrapper from "./content-wrapper";
 
 
 const getUserData = async (userId: string) => {

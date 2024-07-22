@@ -121,6 +121,32 @@ const getUserBlogs = async (req, res) => {
         console.error(err);
         return res.json({ error: "Error getting user blogs" }).status(500)
     }
+};
+
+// check duplicate seo;
+const duplicateSeoPath = async (req, res) => {
+    const pathName = req.params.pathName;
+    if (!pathName) {
+        return res.json(true);
+    }
+    try {
+        const findBlog = await prisma.blog.findFirst({
+            where: {
+                seoPath: pathName
+            }
+        });
+
+        // not found duplicate valid path name
+        console.log(findBlog)
+        if (!findBlog) {
+            return res.json(false)
+        }
+
+        return res.json(true);
+    } catch (err) {
+        console.error(err)
+        return res.json(true);
+    }
 }
 
 
@@ -130,5 +156,6 @@ module.exports = {
     getAllBlog,
     createBlog,
     updateBlog,
-    deleteBlog
+    deleteBlog,
+    duplicateSeoPath
 }
